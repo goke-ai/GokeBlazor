@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GokeBlazor.Server.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Gamers")]
     [ApiController]
     [Route("[controller]")]
     public class GamesController : ControllerBase
@@ -17,9 +17,7 @@ namespace GokeBlazor.Server.Controllers
         private static readonly string[] Options = new[]
         {
             "Rock", "Paper", "Scissors"
-        };
-
-        
+        };        
 
         private readonly ILogger<WeatherForecastController> _logger;
 

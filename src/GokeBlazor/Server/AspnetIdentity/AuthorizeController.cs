@@ -78,7 +78,8 @@ namespace GokeBlazor.Server.AspnetIdentity.Controllers
                 ExposedClaims = User.Claims
                     //Optionally: filter the claims you want to expose to the client
                     //.Where(c => c.Type == "test-claim")
-                    .ToDictionary(c => c.Type, c => c.Value)
+                    // .ToDictionary(c => c.Type, c => c.Value)
+                    .Select(c => new KeyValuePair<string,string>(c.Type, c.Value)).ToList()
             };
         }
     }

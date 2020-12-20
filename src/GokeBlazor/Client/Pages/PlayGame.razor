@@ -38,9 +38,11 @@ else
     </table>
 }
 
+
 @code {
 
     private Game[] games;
+    string error;
 
     protected override async Task OnInitializedAsync()
     {
@@ -51,6 +53,11 @@ else
         catch (AccessTokenNotAvailableException exception)
         {
             exception.Redirect();
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+            Console.WriteLine(error);            
         }
     }
 

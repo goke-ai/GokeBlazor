@@ -60,7 +60,17 @@ namespace GokeBlazor.Server
         private static void AddIdentityServer(IServiceCollection services)
         {
             services.AddIdentityServer()
-                            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+                            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
+                    options =>
+                    {
+                        // https://github.com/dotnet/AspNetCore.Docs/issues/17649
+                        options.IdentityResources["openid"].UserClaims.Add("role");
+                        options.ApiResources.Single().UserClaims.Add("role");
+                    }
+                );
+
+            // Need to do this as it maps "role" to ClaimTypes.Role and causes issues
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();

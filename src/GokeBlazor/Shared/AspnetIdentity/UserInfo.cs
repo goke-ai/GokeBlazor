@@ -8,7 +8,8 @@ namespace GokeBlazor.Shared.AspnetIdentity
     {
         public bool IsAuthenticated { get; set; }
         public string UserName { get; set; }
-        public Dictionary<string, string> ExposedClaims { get; set; }
+        // public Dictionary<string, string> ExposedClaims { get; set; }
+        public List<KeyValuePair<string, string>> ExposedClaims { get; set; }
         public List<KeyValuePair<string, string>> Claims { get; set; }
 
     }
