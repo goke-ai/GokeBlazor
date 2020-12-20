@@ -13,6 +13,10 @@ The default authentication scheme is Aspnet identity. It can be changed to Ident
 4. Open the solution in Visual Studio and press F5.
 5. Create a user using the `Create Account` button in the login page or login if you have already created a user.
 6. A default user in role(s) `Gamers` can assess the Game page. See `SeedData` for roles creation.
+   1. Set User Secret using the following keys and values except UserPWD, please adjust appropriately.
+      1. "Seed:UserUN": "gamer@ark.com"
+      2. "Seed:UserPWD": "xxxxxxxxx"
+      3. "Seed:UserRoles": "Gamers,Users"
 
 ### Credit
 1. Credit to  https://github.com/stavroskasidis/BlazorWithIdentity

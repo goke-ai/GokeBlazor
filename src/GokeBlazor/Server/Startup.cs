@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -60,19 +61,53 @@ namespace GokeBlazor.Server
 
         private static void AddIdentityServer(IServiceCollection services)
         {
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
-                    options =>
-                    {
-                            // make role claim available
-                            options.IdentityResources["openid"].UserClaims.Add("role");
-                            options.ApiResources.Single().UserClaims.Add("role");
+            var config = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+            var env = services.BuildServiceProvider().GetRequiredService<IWebHostEnvironment>();
 
-                            // make profile claim available
-                            // options.IdentityResources["profile"].UserClaims.Add("firstname");
-                            // options.IdentityResources["profile"].UserClaims.Add("lastname");
+            IIdentityServerBuilder builder;
+
+            if (env.IsDevelopment())
+            {
+                builder = services.AddIdentityServer();
+            }
+            else
+            {
+                string filename = null;
+                string password = null;
+                string thumbprint = null;
+
+                var keyType = config.GetSection("IdentityServer:Key:Type").Value;
+                if (keyType == "File")
+                {
+                    filename = Path.Combine(env.ContentRootPath,
+                                        config.GetSection("IdentityServer:Key:FilePath").Value);
+                    password = config.GetSection("IdentityServer:Key:Password").Value;
+
+                    Console.WriteLine(filename);
+                }
+                else
+                {
+                    thumbprint = config.GetSection("IdentityServer:Key:Thumbprint").Value;
+                }
+                var cert = Goke.Core.Certificate.LoadCert(filename, password, thumbprint);
+
+                builder = services.AddIdentityServer()
+                    .AddSigningCredential(cert);
+
+            }
+
+            builder.AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
+                options =>
+                {
+                        // make role claim available
+                        options.IdentityResources["openid"].UserClaims.Add("role");
+                    options.ApiResources.Single().UserClaims.Add("role");
+
+                        // make profile claim available
+                        // options.IdentityResources["profile"].UserClaims.Add("firstname");
+                        // options.IdentityResources["profile"].UserClaims.Add("lastname");
                     }
-                );
+            );
 
             // Need to do this as it maps "role" to ClaimTypes.Role and causes issues
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");

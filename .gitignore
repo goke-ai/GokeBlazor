@@ -341,3 +341,5 @@ healthchecksdb
 /BlazorWithIdentity.Server/data.db
 /src/BlazorWithIdentity
 /src/BlazorWithIdentityServer
+/src/GokeBlazor/Server/goke.key
+/src/GokeBlazor/Server/goke.crt
