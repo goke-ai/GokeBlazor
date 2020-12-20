@@ -1,22 +1,24 @@
 ﻿@inject IIdentitySetting IdentitySetting
 
-@if (IsAspnetIdentity)
+@switch (identity)
 {
-    <AspnetIdentityRedirectToLogin />
+    case "AspnetIdentity":
+        <AspnetIdentityRedirectToLogin />
+        break;
+    case "IdentityServer":
+        <IdentityServerRedirectToLogin />
+        break;
+    default:
+        break;
 }
-else
-{
-    <IdentityServerRedirectToLogin />
-}
 
 
-@code{ 
-
-    bool IsAspnetIdentity = false;
+@code{
+    string identity = "";
 
     protected override void OnInitialized()
     {
-        IsAspnetIdentity = IdentitySetting.Value == "AspnetIdentity";
+        identity = IdentitySetting.Value;
     }
 
 }

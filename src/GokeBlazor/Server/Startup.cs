@@ -46,14 +46,15 @@ namespace GokeBlazor.Server
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            if (IsAspnetIdentity)
+            switch (identity)
             {
-                AddAspnetIdentity(services);
-            }
-            else
-            {
-                AddIdentityServer(services);
-            }
+                case "AspnetIdentity":
+                    AddAspnetIdentity(services); break;
+                case "IdentityServer":
+                    AddIdentityServer(services); break;
+                default:
+                    break;
+            };
 
         }
 

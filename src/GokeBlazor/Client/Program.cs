@@ -23,39 +23,46 @@ namespace GokeBlazor.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
             var identity = builder.Configuration["Identity"];
-            bool IsAspnetIdentity = identity == "AspnetIdentity";
 
             builder.RootComponents.Add<App>("#app");
 
-
-            if (!IsAspnetIdentity)
+            switch (identity)
             {
-                builder.Services.AddHttpClient("GokeBlazor.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
-                .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
-
-                // Supply HttpClient instances that include access tokens when making requests to the server project
-                builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("GokeBlazor.ServerAPI"));
-
-                builder.Services.AddApiAuthorization();
-
-                builder.Services.AddSingleton<IIdentitySetting, IdentityServerSetting>();
-
-            }
-            else
-            {
-                builder.Services.AddOptions();
-                builder.Services.AddAuthorizationCore();
-                builder.Services.AddScoped<IdentityAuthenticationStateProvider>();
-                builder.Services.AddScoped<AuthenticationStateProvider>(s => s.GetRequiredService<IdentityAuthenticationStateProvider>());
-                builder.Services.AddScoped<IAuthorizeApi, AuthorizeApi>();
-
-                builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
-                builder.Services.AddSingleton<IIdentitySetting, AspnetIdentitySetting>();
-
-            }
+                case "AspnetIdentity":
+                    AddAspnetIdentity(builder); break;
+                case "IdentityServer":
+                    AddIdentityServer(builder); break;
+                default:
+                    break;
+            };
 
             await builder.Build().RunAsync();
+        }
+
+        private static void AddAspnetIdentity(WebAssemblyHostBuilder builder)
+        {
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+            builder.Services.AddScoped<IdentityAuthenticationStateProvider>();
+            builder.Services.AddScoped<AuthenticationStateProvider>(s => s.GetRequiredService<IdentityAuthenticationStateProvider>());
+            builder.Services.AddScoped<IAuthorizeApi, AuthorizeApi>();
+
+            builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            builder.Services.AddSingleton<IIdentitySetting, AspnetIdentitySetting>();
+        }
+
+        private static void AddIdentityServer(WebAssemblyHostBuilder builder)
+        {
+            builder.Services.AddHttpClient("GokeBlazor.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
+                            .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+
+            // Supply HttpClient instances that include access tokens when making requests to the server project
+            builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("GokeBlazor.ServerAPI"));
+
+            builder.Services.AddApiAuthorization();
+
+            builder.Services.AddSingleton<IIdentitySetting, IdentityServerSetting>();
         }
     }
 }
