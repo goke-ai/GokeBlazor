@@ -61,12 +61,16 @@ namespace GokeBlazor.Server
         private static void AddIdentityServer(IServiceCollection services)
         {
             services.AddIdentityServer()
-                            .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
                     options =>
                     {
-                        // https://github.com/dotnet/AspNetCore.Docs/issues/17649
-                        options.IdentityResources["openid"].UserClaims.Add("role");
-                        options.ApiResources.Single().UserClaims.Add("role");
+                            // make role claim available
+                            options.IdentityResources["openid"].UserClaims.Add("role");
+                            options.ApiResources.Single().UserClaims.Add("role");
+
+                            // make profile claim available
+                            // options.IdentityResources["profile"].UserClaims.Add("firstname");
+                            // options.IdentityResources["profile"].UserClaims.Add("lastname");
                     }
                 );
 
@@ -78,7 +82,6 @@ namespace GokeBlazor.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
         }
 
         private static void AddAspnetIdentity(IServiceCollection services)
