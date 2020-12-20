@@ -1,0 +1,21 @@
+﻿@inject IIdentitySetting IdentitySetting
+
+@if (IsAspnetIdentity)
+{
+    <AspnetIdentityLoginDisplay />
+}
+else
+{
+    <IdentityServerLoginDisplay />
+}
+
+
+@code{
+    bool IsAspnetIdentity = false;
+
+    protected override void OnInitialized()
+    {
+        IsAspnetIdentity = IdentitySetting.Value == "AspnetIdentity";
+    }
+
+}
