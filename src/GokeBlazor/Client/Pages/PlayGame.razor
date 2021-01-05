@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using GokeBlazor.Shared
-@attribute [Authorize(Roles ="Gamers")]
+@attribute [Authorize(Roles ="Gamers,Users")]
 @inject HttpClient Http
 
 <h1>Game</h1>

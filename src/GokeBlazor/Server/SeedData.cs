@@ -39,7 +39,7 @@ namespace GokeBlazor.Server
                     var userRoles = config["Seed:UserRoles"]?.Split(',', StringSplitOptions.RemoveEmptyEntries);
                     foreach (var role in userRoles)
                     {
-                        await EnsureRole(serviceProvider, userID, role);
+                        await EnsureRole(serviceProvider, userID, role.Trim());
                     }
                 }
             }
