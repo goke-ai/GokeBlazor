@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GokeBlazor.Shared", "src\Go
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goke.Core", "..\goke\src\Goke.Core\Goke.Core.csproj", "{9F6390C6-2FAF-46BD-A1FA-0AEFB693094B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "templatepack", "src\DotnetTemplate\templatepack.csproj", "{2A8979B6-6FEF-489F-B682-193B1575C7A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{0B22FDF7-E81C-4545-A4D2-3A4088EF66B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +165,18 @@ Global
 		{9F6390C6-2FAF-46BD-A1FA-0AEFB693094B}.Release|x64.Build.0 = Release|Any CPU
 		{9F6390C6-2FAF-46BD-A1FA-0AEFB693094B}.Release|x86.ActiveCfg = Release|Any CPU
 		{9F6390C6-2FAF-46BD-A1FA-0AEFB693094B}.Release|x86.Build.0 = Release|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Debug|x86.Build.0 = Debug|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Release|x64.Build.0 = Release|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Release|x86.ActiveCfg = Release|Any CPU
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -172,6 +188,7 @@ Global
 		{61292056-4D9B-4361-880B-74D5063203EF} = {9780F5AC-C718-41D9-A05A-25CEFE95BBC4}
 		{ABDE339F-803D-4C8B-88DC-25D1BB6BD10B} = {9780F5AC-C718-41D9-A05A-25CEFE95BBC4}
 		{E2A6EDFF-1A5C-4B7D-8FBC-E95CF300C144} = {9780F5AC-C718-41D9-A05A-25CEFE95BBC4}
+		{2A8979B6-6FEF-489F-B682-193B1575C7A7} = {0B22FDF7-E81C-4545-A4D2-3A4088EF66B9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75F45143-A365-4C32-A2D5-56BDADCE76CC}

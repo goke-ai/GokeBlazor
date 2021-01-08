@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "Goke",
+    "classifications": [ "Web", "Blazor", "WebAssembly", "C#9" ],
+    "identity": "GokeBlazor",
+    "name": "Goke-Blazor Multi-Auth App",
+    "shortName": "gokeblazor",
+    "sourceName": "GokeBlazor",
+    "tags": {
+      "language": "C#",
+      "type": "project"
+    }
+  }
