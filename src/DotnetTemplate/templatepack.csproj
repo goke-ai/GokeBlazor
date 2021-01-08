@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0</PackageVersion>
+    <PackageVersion>0.5.0</PackageVersion>
     <PackageId>GokeBlazor.Templates</PackageId>
     <Title>Goke Blazor Templates</Title>
     <Authors>Goke</Authors>
     <Description>Templates to use when creating an Goke Blazor project.</Description>
-    <PackageTags>dotnet-new;templates;contoso</PackageTags>
+    <PackageTags>dotnet-new;templates;blazor</PackageTags>
 
     <TargetFramework>netstandard2.0</TargetFramework>
 
@@ -15,6 +15,14 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
     <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Product>GokeBlazor Templates</Product>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.0</FileVersion>
+    <Version>0.5.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/goke-ai/GokeBlazor</RepositoryUrl>
+    <PackageProjectUrl>https://goke.azurewebsites.net/GokeBlazor</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
